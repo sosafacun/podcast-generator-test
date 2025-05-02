@@ -1,5 +1,10 @@
 FROM ubuntu:latest
 
+RUN echo "copying necessary files..."
+#Copy from repo to docker
+COPY ./feed.py /usr/bin/feed.py
+COPY ./entrypoint.sh /entrypoint.sh
+
 RUN echo "installing dependencies..."
 #Install dependencies
 RUN apt-get update && apt-get install -y \
@@ -14,11 +19,6 @@ RUN python3 -m venv /venv \
     && /venv/bin/pip install PyYAML
 
 ENV PATH="/venv/bin:$PATH"
-
-RUN echo "copying necessary files..."
-#Copy from repo to docker
-COPY ./feed.py /usr/bin/feed.py
-COPY ./entrypoint.sh /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
 
