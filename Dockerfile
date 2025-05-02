@@ -3,7 +3,9 @@ FROM ubuntu:latest
 RUN echo "copying necessary files..."
 #Copy from repo to docker
 COPY ./feed.py /usr/bin/feed.py
+
 COPY ./entrypoint.sh /entrypoint.sh
+RUN sed -i 's/\r$//' /entrypoint.sh && chmod +x /entrypoint.sh
 
 RUN echo "installing dependencies..."
 #Install dependencies
