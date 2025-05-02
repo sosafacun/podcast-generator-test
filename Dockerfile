@@ -17,10 +17,8 @@ ENV PATH="/venv/bin:$PATH"
 
 RUN echo "copying necessary files..."
 #Copy from repo to docker
-COPY feed.py /usr/bin/feed.py
-COPY entrypoint.sh /entrypoint.sh
-
-RUN chmod +x /entrypoint.sh
+COPY ./feed.py /usr/bin/feed.py
+COPY ./entrypoint.sh /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
 
